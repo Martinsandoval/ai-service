@@ -1,0 +1,17 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type GenerateNewEmbeddingResult {
+    success: Boolean!
+    errors: [String]
+}
+
+type Query {
+    queryText(query: String!): String!
+}
+
+type Mutation {
+    generateNewEmbedding(document: [String]!): GenerateNewEmbeddingResult!
+}

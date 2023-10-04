@@ -1,0 +1,10 @@
+langchain
+Flask
+flask_cors
+ariadne
+flask-sqlalchemy
+openai
+chromadb
+pyyaml
+attrs
+sentence-transformers
