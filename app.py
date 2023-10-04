@@ -10,7 +10,6 @@ query = ObjectType("Query")
 mutation = ObjectType("Mutation")
 
 mutation.set_field("generateNewEmbedding", generate_new_embedding)
-
 query.set_field("queryText", query_text)
 
 type_defs = load_schema_from_path("schema.graphql")
