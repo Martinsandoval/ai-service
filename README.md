@@ -19,3 +19,7 @@ mutation CreateEmbedding {
     }
 }
 ```
+
+## Demo Video
+https://github.com/Martinsandoval/ia-service/assets/9439367/4ea747f0-829e-409c-91df-93439310b53e
+
