@@ -3,15 +3,20 @@ schema {
     mutation: Mutation
 }
 
-type GenerateNewEmbeddingResult {
+type CreateEmbeddingResult {
     success: Boolean!
     errors: [String]
 }
 
+type GetSuggestionForTextResult {
+    result: String!
+    errors: [String]
+}
+
 type Query {
-    queryText(query: String!): String!
+    getSuggestionForText(text: String!): GetSuggestionForTextResult!
 }
 
 type Mutation {
-    generateNewEmbedding(document: [String]!): GenerateNewEmbeddingResult!
+    createEmbedding(document: String!): CreateEmbeddingResult!
 }

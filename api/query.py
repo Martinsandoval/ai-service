@@ -5,11 +5,11 @@ from langchain.embeddings import OpenAIEmbeddings
 from langchain.llms import OpenAI
 from langchain.chains import RetrievalQA
 
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = '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'
 
 
 @convert_kwargs_to_snake_case
-def query_text(obj, info, query):
+def get_suggestion_for_text(obj, info, text):
     persist_directory = 'db'
     embedding = OpenAIEmbeddings()
 
@@ -23,9 +23,10 @@ def query_text(obj, info, query):
                                            retriever=retriever,
                                            return_source_documents=True)
 
-    llm_response = qa_chain(query)
-    return process_llm_response(llm_response)
+    llm_response = qa_chain(text)
+    result = llm_response['result']
 
-
-def process_llm_response(llm_response):
-    return llm_response['result']
+    return {
+        "result": result,
+        "errors": []
+    }

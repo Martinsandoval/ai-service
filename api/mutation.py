@@ -4,14 +4,16 @@ from langchain.embeddings import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 import os
 
+from openai.error import RateLimitError
+
 os.environ["OPENAI_API_KEY"] = "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"
 
 
 @convert_kwargs_to_snake_case
-def generate_new_embedding(obj, info, document):
-
+def create_embedding(obj, info, document):
+    arr_docs = [document]
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
-    texts = text_splitter.create_documents(document)
+    texts = text_splitter.create_documents(arr_docs)
     persist_directory = 'db'
 
     embedding = OpenAIEmbeddings()

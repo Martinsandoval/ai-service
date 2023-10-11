@@ -3,14 +3,14 @@ from ariadne import load_schema_from_path, make_executable_schema, \
     graphql_sync, snake_case_fallback_resolvers, ObjectType
 from flask import request, jsonify
 
-from api.mutation import generate_new_embedding
-from api.query import query_text
+from api.mutation import create_embedding
+from api.query import get_suggestion_for_text
 
 query = ObjectType("Query")
 mutation = ObjectType("Mutation")
 
-mutation.set_field("generateNewEmbedding", generate_new_embedding)
-query.set_field("queryText", query_text)
+mutation.set_field("createEmbedding", create_embedding)
+query.set_field("getSuggestionForText", get_suggestion_for_text)
 
 type_defs = load_schema_from_path("schema.graphql")
 schema = make_executable_schema(
