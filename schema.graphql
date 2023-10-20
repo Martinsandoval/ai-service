@@ -4,19 +4,43 @@ schema {
 }
 
 type CreateEmbeddingResult {
-    success: Boolean!
+    "The result of the createEmbedding mutation."
+    result: Boolean!
+    "An array of error messages for when the mutation fails"
+    errors: [String]
+}
+
+type CreateEmbeddingsFromProjectResult {
+    "The result of the createEmbeddingsFromProject mutation."
+    result: Boolean!
+    "An array of error messages for when the mutation fails"
     errors: [String]
 }
 
 type GetSuggestionForTextResult {
+    "The result of the getSuggestionForText query."
     result: String!
+    "An array of error messages for when the query fails"
+    errors: [String]
+}
+
+type GetAnswerForQuestionResult {
+    "The result of the getSuggestionForText query."
+    result: String!
+    "An array of error messages for when the query fails"
     errors: [String]
 }
 
 type Query {
+    "Returns a suggested text for a given string."
     getSuggestionForText(text: String!): GetSuggestionForTextResult!
+    "Returns an answer for given question."
+    getAnswerForQuestion(question: String!): GetAnswerForQuestionResult!
 }
 
 type Mutation {
+    "Creates an embedding and store it on the vector db."
     createEmbedding(document: String!): CreateEmbeddingResult!
+    "Creates embeddings for all files on the specified path."
+    createEmbeddingsFromProject(repo_path: String!): CreateEmbeddingsFromProjectResult!
 }
