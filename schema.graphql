@@ -42,5 +42,5 @@ type Mutation {
     "Creates an embedding and store it on the vector db."
     createEmbedding(document: String!): CreateEmbeddingResult!
     "Creates embeddings for all files on the specified path."
-    createEmbeddingsFromProject(repo_path: String!): CreateEmbeddingsFromProjectResult!
+    createEmbeddingsFromProject(repo_path: String!, file_extensions: [String!]!, use_default_db: Boolean!): CreateEmbeddingsFromProjectResult!
 }

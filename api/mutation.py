@@ -6,7 +6,6 @@ from langchain.document_loaders import TextLoader
 import os
 import logging
 
-
 os.environ["OPENAI_API_KEY"] = "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"
 
 
@@ -31,19 +30,25 @@ def create_embedding(obj, info, document):
     }
 
 
-def create_embeddings_from_project(obj, info, repo_path):
+def create_embeddings_from_project(obj, info, repo_path, file_extensions, use_default_db):
     docs = []
     for dirpath, dirnames, filenames in os.walk(repo_path):
         for file in filenames:
-            try:
-                loader = TextLoader(os.path.join(dirpath, file), encoding='utf-8')
-                docs.extend(loader.load_and_split())
-            except Exception as e:
-                logging.exception(e)
+            file_extension = os.path.splitext(file)[1].lower()
+
+            if file_extension in file_extensions:
+                try:
+                    loader = TextLoader(os.path.join(dirpath, file), encoding='utf-8')
+                    docs.extend(loader.load_and_split())
+                except Exception as e:
+                    logging.exception(e)
 
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
     texts = text_splitter.split_documents(docs)
-    persist_directory = 'db'
+    if use_default_db:
+        persist_directory = 'db'
+    else:
+        persist_directory = 'db_code'
 
     embedding = OpenAIEmbeddings()
 
