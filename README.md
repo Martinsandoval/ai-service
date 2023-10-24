@@ -9,9 +9,12 @@ Python version 3.10
 Postman version 10+
 
 1. Clone the repository
-2. Create a run configuration like this
-3. Install the requirements with `pip install -r requirements.txt`
-4. Run the app and you will see that it is running in http://127.0.0.1:5000
+2. Create a run configuration like this:
+
+![RunConfiguration](https://github.com/Martinsandoval/ia-service/assets/9439367/23e87b17-89f6-4825-a3f4-472c8d439fa1)
+
+4. Install the requirements with `pip install -r requirements.txt`
+5. Run the app and you will see that it is running in http://127.0.0.1:5000
 
 ## GraphQL Api's
 
