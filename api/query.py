@@ -6,7 +6,7 @@ from langchain.llms import OpenAI
 from langchain.chains import RetrievalQA
 from langchain.chat_models import ChatOpenAI
 from langchain.chains import ConversationalRetrievalChain
-
+from utils.process import write_code_from_response
 
 os.environ["OPENAI_API_KEY"] = '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'
 
@@ -35,7 +35,7 @@ def get_suggestion_for_text(obj, info, text):
     }
 
 @convert_kwargs_to_snake_case
-def get_answer_for_question(obj, info, question):
+def get_answer_for_question(obj, info, question, create_file, directory_path, filename="archivo"):
     persist_directory = 'db_code'
     embedding = OpenAIEmbeddings()
 
@@ -51,7 +51,15 @@ def get_answer_for_question(obj, info, question):
 
     result = qa({"question": question, "chat_history": chat_history})
 
+    if create_file:
+        code_result = write_code_from_response(result['answer'], directory_path, filename)
+        if code_result == 1:
+            return {
+                "result": f"File '{filename}' successfully created in '{directory_path}'",
+                "errors": []
+            }
+
     return {
-        "result": result['answer'],
-        "errors": []
-    }
+            "result": result['answer'],
+            "errors": []
+        }

@@ -35,7 +35,7 @@ type Query {
     "Returns a suggested text for a given string."
     getSuggestionForText(text: String!): GetSuggestionForTextResult!
     "Returns an answer for given question."
-    getAnswerForQuestion(question: String!): GetAnswerForQuestionResult!
+    getAnswerForQuestion(question: String!, create_file: Boolean!, directory_path: String!, filename: String): GetAnswerForQuestionResult!
 }
 
 type Mutation {
