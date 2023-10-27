@@ -36,7 +36,7 @@ def get_suggestion_for_text(obj, info, text):
 
 @convert_kwargs_to_snake_case
 def get_answer_for_question(obj, info, question):
-    persist_directory = 'db'
+    persist_directory = 'db_code'
     embedding = OpenAIEmbeddings()
 
     vectordb = Chroma(persist_directory=persist_directory,
