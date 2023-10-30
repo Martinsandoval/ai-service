@@ -31,11 +31,19 @@ type GetAnswerForQuestionResult {
     errors: [String]
 }
 
+type GetAnswerForQuestionAndCreateFileResult {
+    "The result of the getAnswerForQuestionAndCreateFile query."
+    result: String!
+    "An array of error messages for when the query fails"
+    errors: [String]
+}
+
+
 type Query {
     "Returns a suggested text for a given string."
     getSuggestionForText(text: String!): GetSuggestionForTextResult!
     "Returns an answer for given question."
-    getAnswerForQuestion(question: String!, create_file: Boolean!, directory_path: String!, filename: String): GetAnswerForQuestionResult!
+    getAnswerForQuestion(question: String!): GetAnswerForQuestionResult!
 }
 
 type Mutation {
@@ -43,4 +51,6 @@ type Mutation {
     createEmbedding(document: String!): CreateEmbeddingResult!
     "Creates embeddings for all files on the specified path."
     createEmbeddingsFromProject(repo_path: String!, file_extensions: [String!]!, use_default_db: Boolean!): CreateEmbeddingsFromProjectResult!
+    "Returns a code file for given question."
+    getAnswerForQuestionAndCreateFile(question: String!, directory_path: String!, filename: String!): GetAnswerForQuestionAndCreateFileResult!
 }
