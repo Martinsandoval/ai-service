@@ -3,7 +3,7 @@ from ariadne import load_schema_from_path, make_executable_schema, \
     graphql_sync, snake_case_fallback_resolvers, ObjectType
 from flask import request, jsonify
 
-from api.mutation import create_embedding, create_embeddings_from_project
+from api.mutation import create_embedding, create_embeddings_from_project, get_answer_for_question_and_create_file
 from api.query import get_suggestion_for_text, get_answer_for_question
 
 query = ObjectType("Query")
@@ -11,6 +11,7 @@ mutation = ObjectType("Mutation")
 
 mutation.set_field("createEmbedding", create_embedding)
 mutation.set_field("createEmbeddingsFromProject", create_embeddings_from_project)
+mutation.set_field("getAnswerForQuestionAndCreateFile", get_answer_for_question_and_create_file)
 
 query.set_field("getSuggestionForText", get_suggestion_for_text)
 query.set_field("getAnswerForQuestion", get_answer_for_question)

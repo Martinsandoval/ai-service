@@ -6,7 +6,7 @@ from langchain.llms import OpenAI
 from langchain.chains import RetrievalQA
 from langchain.chat_models import ChatOpenAI
 from langchain.chains import ConversationalRetrievalChain
-
+from utils.process import extract_code_from_response
 
 os.environ["OPENAI_API_KEY"] = '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'
 
@@ -34,6 +34,7 @@ def get_suggestion_for_text(obj, info, text):
         "errors": []
     }
 
+
 @convert_kwargs_to_snake_case
 def get_answer_for_question(obj, info, question):
     persist_directory = 'db_code'
@@ -51,7 +52,15 @@ def get_answer_for_question(obj, info, question):
 
     result = qa({"question": question, "chat_history": chat_history})
 
-    return {
-        "result": result['answer'],
-        "errors": []
-    }
+    code_blocks = extract_code_from_response(result['answer'])
+
+    if code_blocks.__len__() > 0:
+        return {
+            "result": code_blocks[0][1],
+            "errors": []
+        }
+    else:
+        return {
+            "result": result['answer'],
+            "errors": []
+        }
