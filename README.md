@@ -18,6 +18,7 @@ Postman version 10+
 
 ## GraphQL Api's
 
+Default DB
 ```
 query GetSuggestionForText {
     getSuggestionForText(text: "put your text here") {
@@ -34,6 +35,28 @@ mutation CreateEmbedding {
     }
 }
 ```
+Code DB
+```
+query GetCodeSolutionForQuestion {
+    getCodeSolutionForQuestion(question: "Write a unit test for the app.py file") {
+        result
+        errors
+    }
+}
+```
+```
+mutation GetAnswerForQuestionAndCreateFile {
+    getAnswerForQuestionAndCreateFile(
+        question: "Write a unit test for the app.py file"
+        directory_path: "/home/sando/workspace/generatedFiles"
+        filename: "app.test"
+    ) {
+        result
+        errors
+    }
+}
+```
+
 
 ## Demo Video
 https://github.com/Martinsandoval/ia-service/assets/9439367/4ea747f0-829e-409c-91df-93439310b53e
