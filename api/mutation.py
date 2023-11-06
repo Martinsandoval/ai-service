@@ -9,7 +9,7 @@ import os
 import logging
 from utils.process import write_code_from_response
 
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ['OPENAI_API_KEY'] = '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'
 
 
 @convert_kwargs_to_snake_case
@@ -75,7 +75,7 @@ def get_answer_for_question_and_create_file(obj, info, question, directory_path,
 
     retriever = vectordb.as_retriever(search_kwargs={"k": 2})
 
-    model = ChatOpenAI(model='gpt-3.5-turbo')
+    model = ChatOpenAI(model='gpt-4-1106-preview')
     qa = ConversationalRetrievalChain.from_llm(model, retriever=retriever)
 
     chat_history = []

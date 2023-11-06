@@ -24,8 +24,8 @@ type GetSuggestionForTextResult {
     errors: [String]
 }
 
-type GetAnswerForQuestionResult {
-    "The result of the getSuggestionForText query."
+type GetCodeSolutionForQuestion {
+    "The result of the getCodeSolutionForQuestion mutation."
     result: String!
     "An array of error messages for when the query fails"
     errors: [String]
@@ -43,7 +43,7 @@ type Query {
     "Returns a suggested text for a given string."
     getSuggestionForText(text: String!): GetSuggestionForTextResult!
     "Returns an answer for given question."
-    getAnswerForQuestion(question: String!): GetAnswerForQuestionResult!
+    getCodeSolutionForQuestion(question: String!): GetCodeSolutionForQuestion!
 }
 
 type Mutation {
