@@ -4,7 +4,7 @@ from ariadne import load_schema_from_path, make_executable_schema, \
 from flask import request, jsonify
 
 from api.mutation import create_embedding, create_embeddings_from_project, get_answer_for_question_and_create_file
-from api.query import get_suggestion_for_text, get_answer_for_question
+from api.query import get_suggestion_for_text, get_code_solution_for_question
 
 query = ObjectType("Query")
 mutation = ObjectType("Mutation")
@@ -14,7 +14,7 @@ mutation.set_field("createEmbeddingsFromProject", create_embeddings_from_project
 mutation.set_field("getAnswerForQuestionAndCreateFile", get_answer_for_question_and_create_file)
 
 query.set_field("getSuggestionForText", get_suggestion_for_text)
-query.set_field("getAnswerForQuestion", get_answer_for_question)
+query.set_field("getCodeSolutionForQuestion", get_code_solution_for_question)
 
 type_defs = load_schema_from_path("schema.graphql")
 schema = make_executable_schema(

@@ -8,7 +8,7 @@ from langchain.chat_models import ChatOpenAI
 from langchain.chains import ConversationalRetrievalChain
 from utils.process import extract_code_from_response
 
-os.environ["OPENAI_API_KEY"] = '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'
+os.environ['OPENAI_API_KEY'] = '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'
 
 
 @convert_kwargs_to_snake_case
@@ -36,7 +36,7 @@ def get_suggestion_for_text(obj, info, text):
 
 
 @convert_kwargs_to_snake_case
-def get_answer_for_question(obj, info, question):
+def get_code_solution_for_question(obj, info, question):
     persist_directory = 'db_code'
     embedding = OpenAIEmbeddings()
 
@@ -45,7 +45,7 @@ def get_answer_for_question(obj, info, question):
 
     retriever = vectordb.as_retriever(search_kwargs={"k": 2})
 
-    model = ChatOpenAI(model='gpt-3.5-turbo')
+    model = ChatOpenAI(model='gpt-4-1106-preview')
     qa = ConversationalRetrievalChain.from_llm(model, retriever=retriever)
 
     chat_history = []
