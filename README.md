@@ -59,7 +59,7 @@ mutation GetAnswerForQuestionAndCreateFile {
 
 
 ## Demo Video
-This video shows how to generate an AI response to different topics using information from other content on the site that has been stored as embeddings in a local vector database.
+This video shows a forum web application consuming the service to generate embeddings for all existing solutions in the community, then use them to produce AI-grounded answers.
 
 https://github.com/Martinsandoval/ia-service/assets/9439367/4ea747f0-829e-409c-91df-93439310b53e
 
